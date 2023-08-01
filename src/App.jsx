@@ -33,13 +33,13 @@ const sectionImg = [
 const discountImages = [
   {
     id: 1,
-    img: "bgdiscount1.jpg",
+    img: "./public/bgdiscount1.jpg",
     typeOfDiscount: "summer sale",
     currentDiscount: "Sale 25% of",
   },
   {
     id: 2,
-    img: "bgdiscount1.jpg",
+    img: "./public/bgdiscount2.jpg",
     typeOfDiscount: "novel every day",
     currentDiscount: "Sale 45% of",
   },
@@ -195,7 +195,7 @@ function SectionBook({ itme }) {
 
 function DiscountComponents() {
   return (
-    <div className="grid grid-cols-2    justify-items-center  pt-[7.6rem]  ">
+    <div className="grid grid-cols-2    justify-items-center  pt-[7.6rem]  bg-[#fdf2e9] ">
       {" "}
       {discountImages.map(item => (
         <DiscountComponent item={item} key={item.id} />
@@ -206,9 +206,10 @@ function DiscountComponents() {
 
 function DiscountComponent({ item }) {
   return (
-    <div className=" card-zoom relative flex     overflow-hidden shadow-xl w-[55rem] h-[30rem] rounded-[5%]">
+    <div className=" card-zoom relative flex overflow-hidden   shadow-[#000] w-[55rem] h-[30rem] rounded-[5%]">
       <div
-        className={`card-zoom-image  bg-[url('bgdiscount1.jpg')]    absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover`}
+        style={{ backgroundImage: "url(" + item.img + ")" }}
+        className={`card-zoom-image     absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover`}
       ></div>
       <div className="flex flex-col px-[2rem] gap-y-[2rem] mt-[5rem]">
         <div className=" card-zoom-text  text-2xl   font-black transition-all duration-500 ease-in-out transform text-white/80">
