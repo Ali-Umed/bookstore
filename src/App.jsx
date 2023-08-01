@@ -1,13 +1,57 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+const sectionImg = [
+  {
+    id: 1,
+    img: "book2.png",
+  },
+  {
+    id: 2,
+    img: "book2.png",
+  },
+  {
+    id: 3,
+    img: "book2.png",
+  },
+  {
+    id: 4,
+    img: "book2.png",
+  },
+  {
+    id: 5,
+    img: "book2.png",
+  },
+  {
+    id: 6,
+    img: "book2.png",
+  },
+  {
+    id: 7,
+    img: "book2.png",
+  },
+];
+
+const discountImages = [
+  {
+    id: 1,
+    img: "bgdiscount1.jpg",
+    typeOfDiscount: "summer sale",
+    currentDiscount: "Sale 25% of",
+  },
+  {
+    id: 2,
+    img: "bgdiscount1.jpg",
+    typeOfDiscount: "novel every day",
+    currentDiscount: "Sale 45% of",
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="">
       <Navbar />
       <Main />
-      <SectionFeatured />
+      <SectionBookList />
+      <DiscountComponents />
     </div>
   );
 }
@@ -32,7 +76,7 @@ function Navbar() {
           </li>
           <li>
             <a className="main-nav-link" href="">
-              {' '}
+              {" "}
               Shop
             </a>
           </li>
@@ -53,7 +97,7 @@ function Main() {
       <div className="max-w-[130rem] my-0 mx-auto px-[3.2rem] grid  gap-24 items-center  grid-cols-2">
         <div>
           <h1 className="heading-primary">
-            {' '}
+            {" "}
             There is nothing better than to Read
           </h1>
           <p className="text-[2rem] mb-[4.8rem] leading-[1.6]">
@@ -93,6 +137,84 @@ function Main() {
   );
 }
 
-function SectionFeatured() {
-  return <div></div>;
+function SectionBookList() {
+  return (
+    <div className="bg-[#fdf2e9] h-[32rem] pt-[9.6rem]">
+      <ul className="flex gap-[6rem]  px-[15rem]  items-center   relative">
+        <button className="btn--absloute btn--left">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="btn-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <button className="btn--absloute btn--right">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="btn-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+        {sectionImg.map(img => (
+          <SectionBook key={img.id} itme={img} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function SectionBook({ itme }) {
+  return (
+    <li className="  relative  ">
+      <div className=" shadow-img   "></div>
+
+      <div className="absolute img-card -top-10 left-[55%] -translate-x-2/4 w-full  ">
+        <img src={itme.img} alt="" className="img w-[11rem] h-[16rem]" />
+      </div>
+    </li>
+  );
+}
+
+function DiscountComponents() {
+  return (
+    <div className="grid grid-cols-2  justify-center justify-items-center  pt-[7.6rem] gap-[8rem] ">
+      {" "}
+      {discountImages.map(item => (
+        <DiscountComponent item={item} key={item.id} />
+      ))}
+    </div>
+  );
+}
+
+function DiscountComponent({ item }) {
+  return (
+    <div className=" card-zoom relative flex   m-3  overflow-hidden shadow-xl w-[60rem] h-[40rem] rounded-2xl">
+      <div
+        className={`card-zoom-image  bg-[url('bgdiscount1.jpg')]    absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover`}
+      ></div>
+      <div>
+        <div className=" card-zoom-text  text-3xl  p-5 font-black transition-all duration-500 ease-in-out transform text-white opacity-80;">
+          adsaksdjsdkj
+        </div>
+      </div>
+    </div>
+  );
 }
