@@ -195,7 +195,7 @@ function SectionBook({ itme }) {
 
 function DiscountComponents() {
   return (
-    <div className="grid grid-cols-2  justify-center justify-items-center  pt-[7.6rem] gap-[8rem] ">
+    <div className="grid grid-cols-2    justify-items-center  pt-[7.6rem]  ">
       {" "}
       {discountImages.map(item => (
         <DiscountComponent item={item} key={item.id} />
@@ -206,14 +206,20 @@ function DiscountComponents() {
 
 function DiscountComponent({ item }) {
   return (
-    <div className=" card-zoom relative flex   m-3  overflow-hidden shadow-xl w-[60rem] h-[40rem] rounded-2xl">
+    <div className=" card-zoom relative flex     overflow-hidden shadow-xl w-[55rem] h-[30rem] rounded-[5%]">
       <div
         className={`card-zoom-image  bg-[url('bgdiscount1.jpg')]    absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover`}
       ></div>
-      <div>
-        <div className=" card-zoom-text  text-3xl  p-5 font-black transition-all duration-500 ease-in-out transform text-white opacity-80;">
-          adsaksdjsdkj
+      <div className="flex flex-col px-[2rem] gap-y-[2rem] mt-[5rem]">
+        <div className=" card-zoom-text  text-2xl   font-black transition-all duration-500 ease-in-out transform text-white/80">
+          {item.typeOfDiscount}
         </div>
+        <div className=" card-zoom-text  text-3xl   font-black transition-all duration-500 ease-in-out transform text-white ">
+          {item.currentDiscount}
+        </div>
+        <button className=" card-zoom-text px-[2.4rem] py-[1.2rem] rounded-[9px] text-[1.8rem] bg-[#e67e22]  hover:bg-[#cf711f]  font-black transition-all duration-500 ease-in-out transform text-white ">
+          Shop Now
+        </button>
       </div>
     </div>
   );
