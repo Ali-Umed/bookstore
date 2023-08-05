@@ -1,25 +1,29 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-empty */
 /* eslint-disable react/prop-types */
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./page/HomePage";
 import Products from "./page/Products";
+import { useEffect, useState } from "react";
+import Search from "./page/Search";
 
 const sectionImg = [
   {
     id: 1,
-    img: "book2.png",
+    img: "bookk.png",
   },
   {
     id: 2,
-    img: "book2.png",
+    img: "bookk.png",
   },
   {
     id: 3,
-    img: "book2.png",
+    img: "bookk.png",
   },
   {
     id: 4,
-    img: "book2.png",
+    img: "bookk.png",
   },
   {
     id: 5,
@@ -31,7 +35,7 @@ const sectionImg = [
   },
   {
     id: 7,
-    img: "book2.png",
+    img: "bookk.png",
   },
   {
     id: 8,
@@ -43,7 +47,7 @@ const sectionImg = [
   },
   {
     id: 10,
-    img: "book7.jpg",
+    img: "bookk.png",
   },
 ];
 
@@ -62,121 +66,115 @@ const discountImages = [
   },
 ];
 
-const catagoryBooks = [
-  {
-    catagory: "Trending Now",
-  },
+let TrendingNow = [
+  { id: 0, catagory: "Trending Now" },
   {
     id: 1,
-    img: "/book2.jpg",
-    bookName: "shelton",
+    image: "/book2.jpg",
+    title: "shelton",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     id: 2,
-    bookName: "shelton",
-    img: "/bgdiscount2.jpg",
+    title: "shelton",
+    image: "/bgdiscount2.jpg",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     id: 3,
-    bookName: "shelton",
-    img: "/book2.jpg",
+    title: "shelton",
+    image: "/book2.jpg",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     id: 4,
-    bookName: "shelton",
-    img: "/bgdiscount2.jpg",
+    title: "shelton",
+    image: "/bgdiscount2.jpg",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     offer: "buy one get one 30% of",
     timeOfvaild: "this offer is vaild at book store of 1 october 20023",
     id: 6,
-    img: "/bgdiscount2.jpg",
+    image: "/bgdiscount2.jpg",
     typeOfDiscount: "novel every day",
-    currentDiscount: " 45% of",
+    priceDiscount: " 45% of",
     number: "073023434234",
   },
 ];
 
-const catagoryBestSellingBook = [
-  {
-    catagory: "Best Selling Book",
-  },
+let catagoryBestSellingBook = [
+  { id: 0, catagory: "Best Selling Book" },
   {
     id: 1,
-    img: "/book2.jpg",
-    bookName: "shelton",
+    image: "/book2.jpg",
+    title: "shelton",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     id: 2,
-    bookName: "shelton",
-    img: "/bgdiscount2.jpg",
+    title: "shelton",
+    image: "/bgdiscount2.jpg",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     id: 3,
-    bookName: "shelton",
-    img: "/book2.jpg",
+    title: "shelton",
+    image: "/book2.jpg",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     id: 4,
-    bookName: "shelton",
-    img: "/bgdiscount2.jpg",
+    title: "shelton",
+    image: "/bgdiscount2.jpg",
     writter: "ali umed",
-    current: "55$",
+    price: "55$",
   },
   {
     offer: "buy one get one 30% OFF",
     timeOfvaild: "this offer is vaild at book store of 1 october 20023",
     id: 6,
-    img: "/bgdiscount2.jpg",
+    image: "/bgdiscount2.jpg",
     typeOfDiscount: "novel every day",
     currentDiscount: " 45% OFF",
     number: "073023434234",
   },
 ];
 
-const popularBook = [
-  {
-    catagory: "Popular Book",
-  },
+let popularBook = [
+  { id: 0, catagory: "Popular Book" },
   {
     id: 1,
-    img: "/book2.jpg",
-    bookName: "shelton",
+    image: "/book2.jpg",
+    title: "shelton",
     writter: "ali umed",
     current: "55$",
   },
   {
     id: 2,
-    bookName: "shelton",
-    img: "/bgdiscount2.jpg",
+    title: "shelton",
+    image: "/bgdiscount2.jpg",
     writter: "ali umed",
     current: "55$",
   },
   {
     id: 3,
-    bookName: "shelton",
-    img: "/book2.jpg",
+    title: "shelton",
+    image: "/book2.jpg",
     writter: "ali umed",
     current: "55$",
   },
   {
     id: 4,
-    bookName: "shelton",
-    img: "/bgdiscount2.jpg",
+    title: "shelton",
+    image: "/bgdiscount2.jpg",
     writter: "ali umed",
     current: "55$",
   },
@@ -184,40 +182,103 @@ const popularBook = [
     offer: "buy one get one 30% of",
     timeOfvaild: "this offer is vaild at book store of 1 october 20023",
     id: 6,
-    img: "/bgdiscount2.jpg",
+    image: "/bgdiscount2.jpg",
     typeOfDiscount: "novel every day",
     currentDiscount: " 45% OFF",
     number: "073023434234",
   },
 ];
 
+const BASE_URL = "https://api.itbook.store/1.0";
+
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [err, setErr] = useState("");
+  const [search, setSearch] = useState("");
+  //let [err, setErr] = useState("");
+
+  popularBook = data.filter((item, index) => index < 10);
+  catagoryBestSellingBook = data.filter((item, index) => index > 10);
+  TrendingNow = data.filter((item, index) => index < 10);
+
+  useEffect(function() {
+    const controller = new AbortController();
+
+    async function fetchData() {
+      try {
+        setIsLoading(true);
+        let res = await fetch(`${BASE_URL}/new`);
+
+        if (!res)
+          throw new Error("something went wrong with fetching movies ", {
+            signal: controller.signal,
+          });
+
+        let data = await res.json();
+        setData(data.books);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchData();
+
+    return function() {
+      controller.abort();
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           index
           element={
-            <HomePage
-              sectionImg={sectionImg}
-              discountImages={discountImages}
-              popularBook={popularBook}
-              catagoryBestSellingBook={catagoryBestSellingBook}
-              catagoryBooks={catagoryBooks}
-            />
+            isLoading ? (
+              <h1 className="text-2xl text-center">Loading...</h1>
+            ) : (
+              <HomePage
+                sectionImg={sectionImg}
+                discountImages={discountImages}
+                popularBook={popularBook}
+                catagoryBestSellingBook={catagoryBestSellingBook}
+                catagoryBooks={TrendingNow}
+                setSearch={setSearch}
+                search={search}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                err={err}
+                setErr={setErr}
+              />
+            )
           }
         ></Route>
         <Route
           path="products"
           element={
             <Products
-              popularBook={popularBook}
-              catagoryBestSellingBook={catagoryBestSellingBook}
-              catagoryBooks={catagoryBooks}
+              popularBook={data}
+              catagoryBestSellingBook={data}
+              catagoryBooks={data}
             />
           }
         ></Route>
         <Route path="shop" element={<HomePage />} />
+        <Route
+          path="search"
+          element={
+            <Search
+              search={search}
+              setSearch={setSearch}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              err={err}
+              setErr={setErr}
+            />
+          }
+        />
 
         <Route path="*" element={<h1> page not found</h1>} />
       </Routes>

@@ -8,7 +8,7 @@ export default {
         "8": "repeat(8, minmax(0, 1fr))",
 
         // Complex site-specific row configuration
-        layout: "300px 25px 25px 25px",
+        layout: "275px 45px 40px ",
       },
     },
   },

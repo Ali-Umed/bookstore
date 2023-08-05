@@ -1,22 +1,21 @@
 /* eslint-disable react/prop-types */
 function Catagorycomponent({ item, index }) {
-  if (index === 0) {
-    return;
-  }
   return (
     <div
-      className={`  grid grid-rows-layout   gap-3 pt-[2rem] items-start  justify-self-start  justify-items-start ${
-        index === 5 ? "col-start-5 col-end-7 " : ""
+      className={`  grid grid-rows-layout  gap-3 pt-[2rem] items-start   justify-items-start ${
+        index === 2
+          ? "lg:col-start-5 lg:justify-self-stretch lg:col-end-7 lg:row-start-1 lg:object-cover"
+          : ""
       } `}
     >
-      {index === 5 ? (
-        <div className=" rounded-3xl shadow-md shadow-black bg-gradient-to-br from-black to-teal-900/100 w-[400px] h-[400px]  relative p-[2rem]">
+      {index === 2 ? (
+        <div className=" rounded-3xl shadow-md shadow-black bg-gradient-to-br from-black to-teal-900/100  lg:h-[400px] h-[310px]  relative p-[2rem]">
           {" "}
-          <h1 className="text-white text-2xl ">{item.offer}</h1>
+          <h1 className="text-white text-2xl ">{item.title}</h1>
           <h1 className="text-[#e67e22] mt-5 text-5xl font-bold">
-            {item.currentDiscount}
+            {item.price} off
           </h1>
-          <h1 className="text-white/70 text-2xl mt-7">{item.timeOfvaild}</h1>
+          <h1 className="text-white/70 text-2xl mt-7">{item.subtitle}</h1>
           <div className="flex justify-center items-center absolute bottom-5 gap-5 left-5">
             <div className="bg-teal-700/60 w-12 h-12 rounded-full flex justify-center items-center">
               <svg
@@ -63,30 +62,44 @@ function Catagorycomponent({ item, index }) {
               </svg>
             </div>
 
-            <h1 className="text-white">{item.number}</h1>
+            <h1 className="text-white">07045453354353454</h1>
           </div>
-          <div className=" absolute right-5 bottom-5">
-            <img src={item.img} className={`w-[150px] h-[230px] `} alt="" />
+          <div className=" absolute lg:right-5 right-0  bottom-0 lg:bottom-5 ">
+            <img
+              src={item.image}
+              className={`w-[140px] h-[170px] lg:h-[230px]  lg:w[250px] object-cover `}
+              alt=""
+            />
           </div>
         </div>
       ) : (
         <>
-          <div className="shadow-md shadow-black  rounded-3xl ">
+          <div className="shadow-md shadow-black relative rounded-3xl overflow-hidden ">
             <img
-              src={item.img}
-              className={`w-[400px] h-[300px]  rounded-3xl${
-                index === 5 ? "w-[357px] " : ""
-              }`}
+              src={item.image}
+              className={`    scale-[1.5]  rounded-3xl`}
               alt=""
             />
+            <div className="absolute bottom-0  bg-black/60  px-[1rem] pt-14 rounded-3xl  h-full opacity-0 hover:opacity-100 transition-all duration-1000">
+              {/*<h1 className="text-[#ff8113] font-bold text-2xl mt-3">
+                <span className="text-white">Writter: </span> {item.writter}
+              </h1>*/}
+              <h1 className="text-[#ff8113] font-semibold  text-2xl">
+                <span className="text-white text-1xl">BookName:</span>{" "}
+                {item.title}
+              </h1>
+              <h1 className="text-[#ff7700] pt-12 font-bold text-2xl">
+                <span className="text-white">Description:</span> {item.subtitle}
+              </h1>
+            </div>
           </div>
-          <h1 className="text-[#ff8113] font-bold text-2xl mt-3">
+          {/*<h1 className="text-[#ff8113] font-bold text-2xl mt-3">
             {item.writter}
+          </h1>*/}
+          <h1 className="text-black font-semibold   max-h-full text-4xl   overflow-hidden">
+            {item.title}
           </h1>
-          <h1 className="text-black font-semibold  text-4xl">
-            {item.bookName}
-          </h1>
-          <h1 className="text-[#ff7700] font-bold text-3xl">{item.current}</h1>
+          <h1 className="text-[#ff7700] font-bold text-3xl">{item.price}</h1>
         </>
       )}
     </div>

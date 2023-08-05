@@ -8,8 +8,8 @@ function Products({ catagoryBooks, catagoryBestSellingBook, popularBook }) {
     <div>
       <Navbar />
       <Catagorycomponents catagoryBooks={catagoryBooks} />
-      <Catagorycomponents catagoryBooks={catagoryBestSellingBook} />
-      <Catagorycomponents catagoryBooks={popularBook} />
+      {/*<Catagorycomponents catagoryBooks={catagoryBestSellingBook} />
+      <Catagorycomponents catagoryBooks={popularBook} />*/}
       <Footer />
     </div>
   );

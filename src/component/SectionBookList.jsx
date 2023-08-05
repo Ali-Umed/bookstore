@@ -26,7 +26,6 @@ function SectionBookList({ sectionImg }) {
     return index >= current;
   });
 
-  console.log(sectionimg);
   function next() {
     if (k > current) Setcurrent(cur => cur + 1);
   }

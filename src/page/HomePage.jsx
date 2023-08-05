@@ -12,16 +12,32 @@ function HomePage({
   sectionImg,
   catagoryBooks,
   discountImages,
+  search,
+  setSearch,
+  isLoading,
+  setIsLoading,
+  err,
+  setErr,
 }) {
   return (
     <div className="">
-      <Navbar />
+      <Navbar
+        setSearch={setSearch}
+        search={search}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        err={err}
+        setErr={setErr}
+      />
       <Hero />
       <SectionBookList sectionImg={sectionImg} />
       <DiscountComponents discountImages={discountImages} />
-      <Catagorycomponents catagoryBooks={catagoryBooks} />
-      <Catagorycomponents catagoryBooks={catagoryBestSellingBook} />
-      <Catagorycomponents catagoryBooks={popularBook} />
+      <Catagorycomponents catagoryBooks={catagoryBooks} type={"Trending Now"} />
+      <Catagorycomponents
+        catagoryBooks={catagoryBestSellingBook}
+        type={"Best Saling Book"}
+      />
+      <Catagorycomponents catagoryBooks={popularBook} type={"Popular Book"} />
       <Footer />
     </div>
   );
