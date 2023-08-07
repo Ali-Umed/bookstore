@@ -17,6 +17,7 @@ function DiscountComponent({ item }) {
           Shop Now
         </button>
       </div>
+      1
     </div>
   );
 }

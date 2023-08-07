@@ -7,6 +7,8 @@ import HomePage from "./page/HomePage";
 import Products from "./page/Products";
 import { useEffect, useState } from "react";
 import Search from "./page/Search";
+import Location from "./page/Location";
+import PageNotFound from "./page/PageNotFound";
 
 const sectionImg = [
   {
@@ -196,6 +198,7 @@ function App() {
   const [data, setData] = useState([]);
   const [err, setErr] = useState("");
   const [search, setSearch] = useState("");
+  const [cart, setCart] = useState([]);
   //let [err, setErr] = useState("");
 
   popularBook = data.filter((item, index) => index < 10);
@@ -211,7 +214,7 @@ function App() {
         let res = await fetch(`${BASE_URL}/new`);
 
         if (!res)
-          throw new Error("something went wrong with fetching movies ", {
+          throw new Error("something went wrong with fetching data ", {
             signal: controller.signal,
           });
 
@@ -230,29 +233,32 @@ function App() {
     };
   }, []);
 
+  function HandleAddToCart(item) {
+    useState(items => [...items, item]);
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           index
           element={
-            isLoading ? (
-              <h1 className="text-2xl text-center">Loading...</h1>
-            ) : (
-              <HomePage
-                sectionImg={sectionImg}
-                discountImages={discountImages}
-                popularBook={popularBook}
-                catagoryBestSellingBook={catagoryBestSellingBook}
-                catagoryBooks={TrendingNow}
-                setSearch={setSearch}
-                search={search}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-                err={err}
-                setErr={setErr}
-              />
-            )
+            //isLoading ? (
+            //  <h1 className="text-2xl text-center">Loading...</h1>
+            //) :
+            <HomePage
+              sectionImg={sectionImg}
+              discountImages={discountImages}
+              popularBook={popularBook}
+              catagoryBestSellingBook={catagoryBestSellingBook}
+              catagoryBooks={TrendingNow}
+              setSearch={setSearch}
+              search={search}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              err={err}
+              setErr={setErr}
+            />
           }
         ></Route>
         <Route
@@ -280,7 +286,18 @@ function App() {
           }
         />
 
-        <Route path="*" element={<h1> page not found</h1>} />
+        <Route path="*" element={<PageNotFound />} />
+
+        <Route
+          path="location/bookstore"
+          element={
+            <Location
+              popularBook={data}
+              catagoryBestSellingBook={data}
+              catagoryBooks={data}
+            />
+          }
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

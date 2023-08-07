@@ -2,7 +2,7 @@
 function Catagorycomponent({ item, index }) {
   return (
     <div
-      className={`  grid grid-rows-layout  gap-3 pt-[2rem] items-start   justify-items-start ${
+      className={`  grid   gap-3 pt-[2rem] items-start   justify-items-start ${
         index === 2
           ? "lg:col-start-5 lg:justify-self-stretch lg:col-end-7 lg:row-start-1 lg:object-cover"
           : ""
@@ -99,7 +99,12 @@ function Catagorycomponent({ item, index }) {
           <h1 className="text-black font-semibold   max-h-full text-4xl   overflow-hidden">
             {item.title}
           </h1>
-          <h1 className="text-[#ff7700] font-bold text-3xl">{item.price}</h1>
+          <h1 className="text-[#ff7700] font-bold text-3xl justify-self-center self-end ">
+            {item.price}
+          </h1>
+          <button className=" justify-self-center self-end  bg-[#ff7700] hover:bg-[#ff8113]   px-10 text-lg font-bold text-white py-5 rounded-3xl ">
+            ADD TO CART{" "}
+          </button>
         </>
       )}
     </div>

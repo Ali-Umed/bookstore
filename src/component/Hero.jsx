@@ -30,7 +30,7 @@ function Hero() {
               <img src="book4.jpg" />
             </div>
             <p className="delivered-text text-[1.8rem font-semibold]">
-              1<span className=" text-[#cf711f] font-bold">250,000+</span> books
+              <span className=" text-[#cf711f] font-bold">250,000+</span> books
               delivered last year!
             </p>
           </div>

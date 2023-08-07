@@ -5,6 +5,8 @@ import Footer from "../component/Footer";
 import Hero from "../component/Hero";
 import Navbar from "../component/Navbar";
 import SectionBookList from "../component/SectionBookList";
+import SideBar from "../component/SideBar";
+import TopSalingVender from "../component/TopSalingVender";
 
 function HomePage({
   catagoryBestSellingBook,
@@ -29,15 +31,21 @@ function HomePage({
         err={err}
         setErr={setErr}
       />
-      <Hero />
+      <SideBar />
+      {/*<Hero />*/}
       <SectionBookList sectionImg={sectionImg} />
       <DiscountComponents discountImages={discountImages} />
+      <TopSalingVender
+        catagoryBooks={catagoryBestSellingBook}
+        type={"top Selling vender"}
+      />
       <Catagorycomponents catagoryBooks={catagoryBooks} type={"Trending Now"} />
       <Catagorycomponents
         catagoryBooks={catagoryBestSellingBook}
         type={"Best Saling Book"}
       />
       <Catagorycomponents catagoryBooks={popularBook} type={"Popular Book"} />
+
       <Footer />
     </div>
   );
