@@ -15,6 +15,10 @@ const sectionImg = [
     id: 1,
     img: "bookk.png",
   },
+   {
+    id: 999,
+    img: "bookk.png",
+  },
   {
     id: 2,
     img: "bookk.png",
